@@ -19,16 +19,18 @@ export default class Home extends React.Component {
 
   getMagicNumber() {
     try {
-      return 2;
+      return MAGIC_NUMBER;
     }
     finally {
-      return 3;
+      return MAGIC_NUMBER + 1;
     }
   }
 
   showMagicNumber() {
+    let number = this.getMagicNumber();
+
     this.setState({
-      MAGIC_NUMBER: this.getMagicNumber()
+      MAGIC_NUMBER: number
     });
   }
 

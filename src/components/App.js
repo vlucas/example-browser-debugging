@@ -1,4 +1,5 @@
 import React from 'react';
+import Blocking from './Blocking';
 import Home from './Home';
 import Events from './Events';
 import Inbox from './Inbox';
@@ -15,6 +16,7 @@ export default class App extends React.Component {
 
   getComponent(component) {
     let options = {
+      'blocking': () => <Blocking />,
       'home': () => <Home />,
       'events': () => <Events />,
       'inbox': () => <Inbox />,
@@ -47,6 +49,7 @@ export default class App extends React.Component {
             <nav role="navigation">
               <ul className="list-unstyled side-nav">
                 <li><a onClick={() => this.switchContent('home')}>Home</a></li>
+                <li><a onClick={() => this.switchContent('blocking')}>Blocking</a></li>
                 <li><a onClick={() => this.switchContent('events')}>Events</a></li>
                 <li><a onClick={() => this.switchContent('inbox')}>Inbox</a></li>
                 <li><a onClick={() => this.switchContent('timer')}>Timer</a></li>

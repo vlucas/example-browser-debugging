@@ -4,6 +4,14 @@ import EventEmitter from 'events';
 const events = new EventEmitter();
 
 export default class Events extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      listener_count: 0
+    };
+  }
+
   componentDidMount() {
     events.on('event1', this.handleEvent1);
   }
@@ -16,12 +24,18 @@ export default class Events extends React.Component {
     alert('Event ONE');
   }
 
-  attachEventListeners() {
-    events.on('event-attach');
+  attachEventListener() {
+    events.on('event-attach', (e) => {
+      console.log('Attatched on event listener');
+    });
+
+    this.setState({
+      listener_count: events.listenerCount('event-attach')
+    });
   }
 
-  handleEvent1() {
-    alert('Event ONE');
+  triggerEventListeners() {
+    events.emit('event-attach');
   }
 
   render() {
@@ -31,9 +45,12 @@ export default class Events extends React.Component {
 
         <p><a className='button' onClick={() => this.triggerEvent1()}>Event One</a></p>
         <p>&nbsp;</p>
-        <p><a className='button button-approve' onClick={() => this.triggerEvent1()}>Event Two</a></p>
+        <p>
+          <a className="button button-approve" onClick={() => this.attachEventListener()}>Attach Event Listener</a> &nbsp;
+          <a className="button button-neutral" onClick={() => this.triggerEventListeners()}>Trigger Event ({this.state.listener_count} listeners)</a>
+        </p>
         <p>&nbsp;</p>
-        <p><a className='button button-neutral' onClick={() => this.triggerEvent1()}>Event Two</a></p>
+        <p><a className="button button-neutral" onClick={() => this.triggerEvent1()}>Event Two</a></p>
       </div>
     );
   }
