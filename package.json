@@ -1,0 +1,33 @@
+{
+  "name": "example-browser-debugging",
+  "version": "1.0.0",
+  "description": "Example JS app to demonstrate browser debugging in Chrome",
+  "main": "index.js",
+  "scripts": {
+    "build": "source .env && gulp",
+    "start": "node src/server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "source .env && gulp watch"
+  },
+  "author": "Vance Lucas",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0",
+    "isomorphic-fetch": "^2.2.1",
+    "pump": "^1.0.1",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "connect": "^3.5.0",
+    "events": "^1.1.1",
+    "serve-static": "^1.11.1"
+  }
+}
