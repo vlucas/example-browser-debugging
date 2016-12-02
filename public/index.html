@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,8 +8,29 @@
   </head>
   <body>
 
-    <div id="content">Loading...</div>
+    <div>
+      <h1>ACME, Inc. Widgets</h1>
 
+      <div class="grid-flex-container">
+        <div class="grid-flex-cell grid-flex-cell-1of4">
+          <nav role="navigation">
+            <ul class="list-unstyled side-nav">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#events">Events</a></li>
+              <li><a href="#inbox">Inbox</a></li>
+              <li><a href="#timer">Timer</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="grid-flex-cell">
+          <div id="content">
+            Loading...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>
