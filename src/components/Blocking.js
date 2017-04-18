@@ -1,5 +1,4 @@
 import React from 'react';
-import Timer from './Timer';
 
 function sleep(milliseconds) {
   var start = new Date().getTime();
@@ -12,7 +11,6 @@ function sleep(milliseconds) {
 
 export default class Blocking extends React.Component {
   doBlockingThing() {
-    sleep(5000);
   }
 
   render() {
@@ -21,9 +19,7 @@ export default class Blocking extends React.Component {
         <h2>Blocking JS</h2>
 
         <p><a className="button button-warn" onClick={() => this.doBlockingThing()}>Block for a while (sync load)</a></p>
-        <Timer />
       </div>
     );
   }
 }
-

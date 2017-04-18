@@ -27,9 +27,9 @@ export default class Timer extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>{this.state.time}</p>
-      </div>
+      <span>
+        {this.state.time}
+      </span>
     );
   }
 }

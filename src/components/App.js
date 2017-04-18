@@ -4,6 +4,7 @@ import Blocking from './Blocking';
 import Home from './Home';
 import Events from './Events';
 import Inbox from './Inbox';
+import Timer from './Timer';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -45,7 +46,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>ACME, Inc. Widgets</h1>
+        <h1>ACME, Inc. Widgets (<Timer />)</h1>
 
         <div className="grid-flex-container">
           <div className="grid-flex-cell grid-flex-cell-1of4">

@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import Timer from './Timer';
 
 const ITEMS_NUM = 1000;
 
@@ -13,6 +12,9 @@ export default class AppendLoop extends React.Component {
     };
   }
 
+
+
+
   handleAppendClickjQuery() {
     let el = $('#append-here');
 
@@ -22,6 +24,16 @@ export default class AppendLoop extends React.Component {
       el.append(item);
     }
   }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -48,15 +60,216 @@ export default class AppendLoop extends React.Component {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  handleAppendClickVanillaAsync() {
+    let el = document.getElementById('append-here');
+    let container = document.createElement('div');
+
+    function updater (num) {
+      return function () {
+        let item = document.createElement('div');
+        item.appendChild(document.createTextNode('My Item ' + num));
+
+        container.appendChild(item);
+      };
+    }
+
+    for (let i = 0; i < ITEMS_NUM; i++) {
+      setTimeout(updater(i), 0);
+    }
+
+    setTimeout(function () {
+      el.appendChild(container);
+    }, 0);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  handleAppendClickVanillaAnimation() {
+    let el = document.getElementById('append-here');
+    let container = document.createElement('div');
+
+    function updater (num) {
+      return function () {
+        let item = document.createElement('div');
+        item.appendChild(document.createTextNode('My Item ' + (num)));
+
+        container.appendChild(item);
+
+        if (num < ITEMS_NUM) {
+          requestAnimationFrame(updater(num + 1));
+        }
+      };
+    }
+
+    requestAnimationFrame(updater(0));
+    el.appendChild(container);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  handleAppendClickLudicrousSpeed() {
+    let el = document.getElementById('append-here');
+    let container = document.createElement('div');
+
+    function updater (num, numToUpdate) {
+      // console.log('Append item', num);
+      return function () {
+        // console.log('Appending item', num);
+        for (let i = 0; i < numToUpdate; i++) {
+          let item = document.createElement('div');
+          item.appendChild(document.createTextNode('My Item ' + (num + i)));
+
+          container.appendChild(item);
+        }
+
+        if (num < ITEMS_NUM) {
+          requestAnimationFrame(updater(num + numToUpdate, numToUpdate));
+        }
+      };
+    }
+
+    requestAnimationFrame(updater(0, 100));
+    el.appendChild(container);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  handleAppendClickPlaidSpeed() {
+    let plaid = $('<div id="plaid"></div>')
+      .click(function () { $(this).remove(); });
+
+    plaid.appendTo(document.body);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   clearItems() {
     let el = $('#append-here');
 
     el.html('');
-
-    if (this.state.items) {
-      this.setState({ items: null });
-    }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -66,13 +279,15 @@ export default class AppendLoop extends React.Component {
         <h2>Append Loop (DOM Mutation)</h2>
         <p><a className="button button-warn" onClick={() => this.clearItems()}>Clear Items</a></p>
         <p>
-          <a className="button" onClick={() => this.handleAppendClickjQuery()}>Append (jQuery)</a> &nbsp;
+          <a className="button" onClick={() => this.handleAppendClickjQuery()}>Append (jQuery)</a>
           <a className="button" onClick={() => this.handleAppendClickVanilla()}>Append (Vanilla.js)</a>
+          <a className="button" onClick={() => this.handleAppendClickVanillaAsync()}>Append (Vanilla.js) Async</a>
+          <a className="button" onClick={() => this.handleAppendClickVanillaAnimation()}>Append requestAnimationFrame()</a>
+          <a className="button" onClick={() => this.handleAppendClickLudicrousSpeed()}>Append (Vanilla.js) Faster?</a>
+          <a className="button" onClick={() => this.handleAppendClickPlaidSpeed()}>Append (Vanilla.js) Even FASTER?</a>
         </p>
-        <Timer />
         <div id="append-here">Items go here...</div>
       </div>
     );
   }
 }
-
