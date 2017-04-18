@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MAGIC_NUMBER = 2;
+const MAGIC_NUMBER = 3;
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -18,16 +18,11 @@ export default class Home extends React.Component {
   }
 
   getMagicNumber() {
-    try {
-      return MAGIC_NUMBER;
-    }
-    finally {
-      return MAGIC_NUMBER + 1;
-    }
+    return MAGIC_NUMBER;
   }
 
   showMagicNumber() {
-    let number = this.getMagicNumber();
+    let number = this.getMagicNumber() + 1;
 
     this.setState({
       MAGIC_NUMBER: number

@@ -1,26 +1,28 @@
 import React from 'react';
+import AppendLoop from './AppendLoop';
 import Blocking from './Blocking';
 import Home from './Home';
 import Events from './Events';
 import Inbox from './Inbox';
-import Timer from './Timer';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
+    let selectedComponent = localStorage.getItem('selectedComponent');
+
     this.state = {
-      selectedComponent: 'home'
+      selectedComponent: selectedComponent || 'home'
     };
   }
 
   getComponent(component) {
     let options = {
+      'append': () => <AppendLoop />,
       'blocking': () => <Blocking />,
       'home': () => <Home />,
       'events': () => <Events />,
       'inbox': () => <Inbox />,
-      'timer': () => <Timer />,
     };
 
     if (typeof options[component] === 'undefined') {
@@ -33,6 +35,7 @@ export default class App extends React.Component {
   switchContent(selectedComponent) {
     this.getComponent(selectedComponent);
     this.setState({ selectedComponent });
+    localStorage.setItem('selectedComponent', selectedComponent);
   }
 
   renderContent() {
@@ -49,10 +52,10 @@ export default class App extends React.Component {
             <nav role="navigation">
               <ul className="list-unstyled side-nav">
                 <li><a onClick={() => this.switchContent('home')}>Home</a></li>
+                <li><a onClick={() => this.switchContent('append')}>Append Loop</a></li>
                 <li><a onClick={() => this.switchContent('blocking')}>Blocking</a></li>
                 <li><a onClick={() => this.switchContent('events')}>Events</a></li>
                 <li><a onClick={() => this.switchContent('inbox')}>Inbox</a></li>
-                <li><a onClick={() => this.switchContent('timer')}>Timer</a></li>
               </ul>
             </nav>
           </div>

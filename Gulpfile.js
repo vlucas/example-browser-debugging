@@ -20,7 +20,7 @@ gulp.task('js', function () {
 		entries: 'client/index.js',
 		basedir: 'src',
 		extensions: ['.js'],
-		debug: true
+		debug: process.env.NODE_ENV !== 'production'
 	})
 	.transform(babelify, { presets: ["es2015", "react"] })
 	.bundle()
@@ -28,8 +28,8 @@ gulp.task('js', function () {
 	.pipe(gulp.dest('./public/js'));
 });
 
-// gulp.task('minify', function () {
-//   return gulp.src('./public/js/app.js')
-//     .pipe(uglify())
-//     .pipe(gulp.dest('./public/js'));
-// });
+gulp.task('minify', function () {
+  return gulp.src('./public/js/app.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('./public/js'));
+});
