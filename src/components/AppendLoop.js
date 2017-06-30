@@ -176,9 +176,9 @@ export default class AppendLoop extends React.Component {
     let container = document.createElement('div');
 
     function updater (num, numToUpdate) {
-      // console.log('Append item', num);
       return function () {
-        // console.log('Appending item', num);
+        let nextNum = num + numToUpdate;
+
         for (let i = 0; i < numToUpdate; i++) {
           let item = document.createElement('div');
           item.appendChild(document.createTextNode('My Item ' + (num + i)));
@@ -186,17 +186,17 @@ export default class AppendLoop extends React.Component {
           container.appendChild(item);
         }
 
-        if (num < ITEMS_NUM) {
-          requestAnimationFrame(updater(num + numToUpdate, numToUpdate));
+        if (nextNum < ITEMS_NUM) {
+          requestAnimationFrame(updater(nextNum, numToUpdate));
         }
       };
     }
 
-    requestAnimationFrame(updater(0, 100));
+    requestAnimationFrame(updater(0, 50));
     el.appendChild(container);
   }
 
-
+  // end
 
 
 

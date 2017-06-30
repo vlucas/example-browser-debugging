@@ -6,7 +6,7 @@
   "scripts": {
     "build": "source .env && gulp",
     "build:prod": "NODE_ENV=production gulp && NODE_ENV=production gulp minify",
-    "start": "node src/server/index.js",
+    "start": "nodemon src/server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "source .env && gulp watch"
   },
